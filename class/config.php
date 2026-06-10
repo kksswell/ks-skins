@@ -1,24 +1,19 @@
 <?php
-// Включаем сессии
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Настройки базы данных (данные от твоего MySQL сервера CS2)
-define('DB_HOST', '95.213.255.80:3306');
-define('DB_USER', 'u4969_qwB1B4FGdl');
-define('DB_PASS', 'eNUDolcO!N70JY.JoZ.r873K');
-define('DB_NAME', 's4969_sdadsad');
-
-// Настройки Steam API
-define('STEAM_API_KEY', 'CFD9C7353F93011A7FAC7CD6FBE973E4'); // Получить на steamcommunity.com/dev/apikey
-define('DOMAIN_NAME', $_SERVER['SERVER_NAME']); // Автоматически определит твой домен
+// Настройки подключения к базе данных mpnova-host.ru
+define('DB_HOST', '95.213.255.60'); // IP или хост твоей БД со скриншота phpMyAdmin
+define('DB_USER', 'u4969_qwB1B4FGdl');  // Логин (например, s4969_sc_test или похожий)
+define('DB_PASS', 'eNUDolcO!N70JY.JoZ.r873K'); // Пароль от пользователя базы данных
+define('DB_NAME', 's4969_sdadsad'); // Имя базы данных из phpMyAdmin
 
 try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
+    // Создаем подключение PDO
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
+    
+    // Включаем режим вывода ошибок SQL
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Отключаем эмуляцию подготовленных выражений
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch (PDOException $e) {
-    die("Ошибка подключения к БД: " . $e->getMessage());
+    die("Ошибка подключения к базе данных: " . $e->getMessage());
 }
