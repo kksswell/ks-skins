@@ -21,7 +21,7 @@ try {
     // В зависимости от плагина, таблица может называться `wp_player_skins` или похожим образом.
     // Пример запроса обновления данных:
     $stmt = $pdo->prepare("
-        INSERT INTO `player_skins` (`steamid`, `weapon`, `paint`, `seed`, `wear`) 
+        INSERT INTO `wp_player_skins` (`steamid`, `weapon`, `paint`, `seed`, `wear`) 
         VALUES (:steamid, :weapon, :paint, :seed, :wear)
         ON DUPLICATE KEY UPDATE `paint` = :paint, `seed` = :seed, `wear` = :wear
     ");
