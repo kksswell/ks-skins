@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include("class/config.php");
 
 // Имитируем авторизацию для теста (в будущем тут будет SteamAuth)
 $_SESSION['steamid'] = '76561198000000000'; 
